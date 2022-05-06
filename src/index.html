@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Palette Generator</title>
+    <!-- favicon -->
+    <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg" />
+    <link rel="icon" type="image/png" href="../assets/images/favicon.png" />
+    <!-- font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- icons -->
+    <script
+      src="https://kit.fontawesome.com/438840d36f.js"
+      crossorigin="anonymous"
+    ></script>
+    <!-- styles -->
+    <link rel="stylesheet" href="../sass/style.scss" />
+  </head>
+  <body>
+    <main class="main-container">
+      <header class="header">
+        <img class="header__logo" src="/assets/logo.svg" alt="logo" />
+        <h1>UI Palettes</h1>
+      </header>
+
+      <nav class="navbar">
+        <ul class="navbar__items">
+          <li class="items__item">
+            <button class="item__adjust" title=" Palette Adjustment">
+              <i class="fas fa-sliders-h"></i>
+            </button>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="colors">
+        <div class="color">
+          <h2 class="color__hex">hex</h2>
+          <div class="color__controlls">
+            <button class="controls__lock">
+              <i class="fas fa-unlock"></i>
+            </button>
+          </div>
+        </div>
+        <div class="color">
+          <h2 class="color__hex">hex</h2>
+          <div class="color__controlls">
+            <button class="controls__lock">
+              <i class="fas fa-unlock"></i>
+            </button>
+          </div>
+        </div>
+        <div class="color">
+          <h2 class="color__hex">hex</h2>
+          <div class="color__controlls">
+            <button class="controls__lock">
+              <i class="fas fa-unlock"></i>
+            </button>
+          </div>
+        </div>
+        <div class="color">
+          <h2 class="color__hex">hex</h2>
+          <div class="color__controlls">
+            <button class="controls__lock">
+              <i class="fas fa-unlock"></i>
+            </button>
+          </div>
+        </div>
+        <div class="color">
+          <h2 class="color__hex">hex</h2>
+          <div class="color__controlls">
+            <button class="controls__lock">
+              <i class="fas fa-unlock"></i>
+            </button>
+          </div>
+        </div>
+        <div class="adjustment-panel hidden">
+          <div>
+            <span>Palette Adjustment</span>
+          </div>
+          <div class="adjustment-panel__sliders">
+            <div class="sliders__hue">
+              <span>Hue</span>
+              <input
+                type="range"
+                min="0"
+                max="360"
+                step="1"
+                value="0"
+                name="hue"
+                class="sliders__hue-input"
+              />
+            </div>
+            <div class="sliders__brightness">
+              <span>Brightness</span>
+              <input
+                type="range"
+                min="0"
+                max="1"
+                step="0.01"
+                value="0"
+                name="brightness"
+                class="sliders__bright-input"
+              />
+            </div>
+            <div class="sliders__saturation">
+              <span>Saturation</span>
+              <input
+                type="range"
+                min="0"
+                max="200"
+                step="1"
+                value="0"
+                name="saturation"
+                class="sliders__saturation-input"
+              />
+            </div>
+            <span>Modified Palette:</span>
+            <div class="sliders__colorIndicators">
+              <div class="colorIndicator"></div>
+              <div class="colorIndicator"></div>
+              <div class="colorIndicator"></div>
+              <div class="colorIndicator"></div>
+              <div class="colorIndicator"></div>
+            </div>
+          </div>
+          <div class="adjustment-panel__buttons">
+            <button class="apply">Apply</button>
+            <button class="cancel">Cancel</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel disabled">
+        <div class="panel__library">
+          <button class="library__btn">
+            <i class="fas fa-book-open"></i>
+            Library
+          </button>
+        </div>
+        <div class="panel__generate disabled">
+          <button class="generate__btn">
+            <i class="fas fa-sync"></i>
+            Generate
+          </button>
+        </div>
+        <div class="panel__save disabled">
+          <button class="save__btn">
+            <i class="fas fa-file"></i>
+            Save
+          </button>
+        </div>
+      </div>
+
+      <!-- Popup windows -->
+      <div class="copy">
+        <div class="copy__popup">
+          <h3>Copied to clipboard!</h3>
+          <h4>&#128077;</h4>
+        </div>
+      </div>
+      <div class="save">
+        <div class="save__popup">
+          <h4>Give a name to your pallete</h4>
+          <input type="text" maxlength="35" class="save__name" />
+          <div class="buttons">
+            <button type="submit" class="save__submit">Save</button>
+            <button type="submit" class="save__cancel">Cancel</button>
+          </div>
+        </div>
+      </div>
+      <div class="library">
+        <div class="library__popup">
+          <button class="library__close"><i class="fas fa-times"></i></button>
+          <h4 class="cta">Pick your pallete</h4>
+        </div>
+      </div>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chroma-js/2.4.2/chroma.min.js"></script>
+    <script type="module" src="../src/index.js"></script>
+  </body>
+</html>

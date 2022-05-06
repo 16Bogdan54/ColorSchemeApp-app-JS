@@ -1,0 +1,375 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Nunito", sans-serif;
+}
+
+i {
+  pointer-events: none;
+}
+
+@mixin setupFlex($alignItems, $justifyContent, $fDirection) {
+  display: flex;
+  align-items: $alignItems;
+  justify-content: $justifyContent;
+  flex-direction: $fDirection;
+}
+
+@mixin popUpWindow {
+  background-color: rgb(245, 243, 243);
+  width: 20rem;
+  padding: 2rem 1rem;
+  @include setupFlex(center, space-around, column);
+  border-radius: 30px;
+}
+
+@mixin fullSpace {
+  width: 100%;
+  height: 100vh;
+}
+
+.main-container {
+  @include setupFlex(center, space-between, column);
+  @include fullSpace();
+  position: relative;
+
+  .header {
+    @include setupFlex(center, center, row);
+    padding: 1rem;
+
+    .header__logo {
+      height: 3rem;
+      border-radius: 20%;
+      margin: 0rem 1rem;
+    }
+  }
+
+  .navbar {
+    height: 5vh;
+    width: 100%;
+    border-top: 1px solid lightgray;
+    border-bottom: 1px solid lightgrey;
+
+    .navbar__items {
+      @include setupFlex(center, center, row);
+      height: inherit;
+      width: inherit;
+      list-style: none;
+      padding: 0.5rem;
+
+      .items__item {
+        button {
+          border: none;
+          background-color: transparent;
+          font-size: 1.5rem;
+          cursor: pointer;
+          color: black;
+        }
+      }
+    }
+  }
+
+  .colors.adjustment-panel--active {
+    padding-right: 20%;
+  }
+
+  .colors {
+    @media screen and (max-width: 428px) {
+      grid-template-columns: repeat(auto-fit, minmax(215px, 1fr));
+    }
+
+    @media screen and (min-width: 768px) {
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
+
+    @include fullSpace();
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    overflow: hidden;
+    position: relative;
+    transition: padding 0.5s ease-in-out;
+
+    .color {
+      @include setupFlex(center, space-evenly, column);
+      height: 100%;
+      position: relative;
+
+      .color__controlls {
+        @include setupFlex(center, space-between, column);
+        opacity: 0;
+        transition: all 0.5s ease;
+
+        button {
+          border: none;
+          background-color: transparent;
+          font-size: 1.5rem;
+          cursor: pointer;
+          color: inherit;
+          transition: all 0.5 ease;
+        }
+      }
+
+      &:hover {
+        :nth-child(2) {
+          opacity: 1;
+        }
+      }
+    }
+
+    .adjustment-panel.hidden {
+      width: 0%;
+      padding: 0rem;
+      opacity: 0;
+    }
+
+    .adjustment-panel {
+      @media screen and (max-width: 768px) {
+        width: 100%;
+      }
+
+      @include setupFlex(center, space-evenly, column);
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+      color: black;
+      transition: all 0.5s ease-in-out, opacity 0.2s;
+      background: white;
+      overflow-x: hidden;
+      z-index: 1;
+      width: 20%;
+      padding: 1rem;
+      opacity: 1;
+
+      .adjustment-panel__sliders {
+        @include setupFlex(center, space-around, column);
+
+        input[type="range"] {
+          -webkit-appearance: none;
+          border-radius: 20px;
+          margin: 0.2rem 0rem;
+        }
+
+        .sliders__hue,
+        .sliders__brightness,
+        .sliders__saturation,
+        .sliders__temperature {
+          all: inherit;
+          margin: 0.5rem 0rem;
+        }
+
+        .sliders__hue-input {
+          background: linear-gradient(
+            to right,
+            #ff0000 0%,
+            #ffff00 17%,
+            #00ff00 33%,
+            #00ffff 50%,
+            #0000ff 67%,
+            #ff00ff 83%,
+            #ff0000 100%
+          );
+        }
+
+        .sliders__bright-input {
+          background: linear-gradient(to right, #000, #fff);
+        }
+
+        .sliders__saturation-input {
+          background: linear-gradient(to right, #fff, red);
+        }
+
+        .sliders__temperature-input {
+          background: linear-gradient(to right, #3962d2, #fff, #f19c38);
+        }
+
+        .sliders__colorIndicators {
+          @include setupFlex(center, space-between, row);
+          width: 100%;
+          margin: 1rem 0rem;
+
+          .colorIndicator {
+            height: 30px;
+            width: 30px;
+          }
+        }
+      }
+
+      .adjustment-panel__buttons {
+        width: 100%;
+        @include setupFlex(center, space-evenly, row);
+
+        button {
+          font-size: 1rem;
+          padding: 0.5rem 1rem;
+          border: none;
+          border-radius: 10%;
+          cursor: pointer;
+        }
+
+        .apply {
+          font-size: 1rem;
+          padding: 0.5rem 1rem;
+          background: #466995;
+          color: white;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+
+  .panel {
+    @include setupFlex(center, space-evenly, row);
+    width: 100%;
+    padding: 3rem 0rem;
+    text-align: center;
+    height: 10vh;
+    border-top: 1px solid lightgray;
+    border-bottom: 1px solid lightgrey;
+
+    button {
+      padding: 0.5rem;
+      font-size: 1rem;
+      border: none;
+      background-color: transparent;
+      cursor: pointer;
+      color: rgb(126, 125, 125);
+      transition: all 0.3s ease-in;
+      @include setupFlex(center, space-evenly, column);
+
+      &:hover {
+        color: black;
+      }
+    }
+  }
+
+  .copy.active {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .copy {
+    position: absolute;
+    top: 0;
+    left: 0;
+    @include fullSpace();
+    opacity: 0;
+    pointer-events: none;
+    background-color: rgba(0, 0, 0, 0.5);
+    transition: all 0.5s ease;
+    @include setupFlex(center, center, column);
+
+    .copy__popup {
+      @include popUpWindow();
+    }
+  }
+
+  .save.active {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .save {
+    position: absolute;
+    top: 0;
+    left: 0;
+    @include fullSpace();
+    opacity: 0;
+    pointer-events: none;
+    background-color: rgba(0, 0, 0, 0.5);
+    transition: all 0.5s ease;
+    @include setupFlex(center, center, column);
+    .save__popup {
+      @include popUpWindow();
+
+      .save__name {
+        border: 1px solid #466995;
+        margin: 1rem 0rem;
+      }
+
+      .buttons {
+        button {
+          margin: 0rem 0.5rem;
+        }
+
+        .save__submit {
+          font-size: 1rem;
+          padding: 0.5rem 1rem;
+          background: #466995;
+          color: white;
+          font-weight: bold;
+          border-radius: 10%;
+          cursor: pointer;
+          border: none;
+        }
+
+        .save__cancel {
+          font-size: 1rem;
+          padding: 0.5rem 1rem;
+          border: none;
+          border-radius: 10%;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+  .library.active {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .library {
+    position: absolute;
+    top: 0;
+    left: 0;
+    @include fullSpace();
+    opacity: 0;
+    pointer-events: none;
+    background-color: rgba(0, 0, 0, 0.5);
+    transition: all 0.5s ease;
+    @include setupFlex(center, center, column);
+    .library__popup {
+      @include popUpWindow();
+      position: relative;
+
+      .library__close {
+        background: none;
+        border: none;
+        font-size: 1.4rem;
+        position: absolute;
+        top: 10;
+        right: 20;
+        cursor: pointer;
+      }
+
+      .popup_palette {
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        flex-direction: column;
+        width: 100%;
+        border-bottom: 1px solid rgb(190, 190, 190);
+
+        .controlls {
+          @include setupFlex(center, space-evenly, row);
+          width: inherit;
+
+          .selectBtn {
+            background: rgb(32, 117, 39);
+            border: none;
+            padding: 0.3rem;
+            color: white;
+            cursor: pointer;
+          }
+        }
+
+        .popup__colors {
+          @include setupFlex(center, center, row);
+          width: 100%;
+        }
+      }
+    }
+  }
+}
